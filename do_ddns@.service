@@ -1,0 +1,36 @@
+[Unit]
+Description=Update DDNS settings for %i
+
+
+[Service]
+Type=oneshot
+; keeps options off the commandline
+Environment="DO_DDNS_DOMAIN=%i"
+Environment="DO_DDNS_API_KEY="
+ExecStart=/usr/local/bin/do_ddns.py
+
+; run as a nobody - you might want a dedicated user instead
+User=nobody
+
+; run with a private version of /tmp
+PrivateTmp=true
+
+; run with a minimal /dev
+PrivateDevices=true
+
+; Make /etc, /boot read only
+ProtectSystem=full
+
+; make /home, /root, /run/user inaccessible to the script
+ProtectHome=true
+
+; lock service out of mount points too
+InaccessiblePaths=/mnt /media /data
+
+; Also, don't allow it to ever become root again
+NoNewPrivileges=true
+
+
+[Install]
+WantedBy=multi-user.target
+
