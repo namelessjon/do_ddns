@@ -7,7 +7,7 @@ Type=oneshot
 ; keeps options off the commandline
 Environment="DO_DDNS_DOMAIN=%i"
 Environment="DO_DDNS_API_KEY="
-ExecStart=/usr/local/bin/do_ddns.py
+ExecStart=/usr/local/bin/do_ddns
 
 ; run as a nobody - you might want a dedicated user instead
 User=nobody
